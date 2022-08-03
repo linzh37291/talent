@@ -1,7 +1,12 @@
-package com.nova.felixchat.infrastructure.utils
 
+package com.lin.infrastructure.utils;
+
+
+import com.lin.infrastructure.utils.BeanUtils
 import lombok.Data
-
+/**
+ * @author linzihao
+ */
 @Data
 class TestBeanCopy {
 

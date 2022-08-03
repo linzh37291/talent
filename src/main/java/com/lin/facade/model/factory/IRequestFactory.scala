@@ -1,7 +1,7 @@
-package com.nova.felixchat.facade.model.factory
+package com.lin.facade.model.factory
 
-import com.nova.felixchat.domain.model.BaseDO
-import com.nova.felixchat.facade.model.request.BaseRequest
+import com.lin.domain.model.BaseDO
+import com.lin.facade.model.request.BaseRequest
 
 /**
  *

@@ -7,7 +7,9 @@ import com.lin.infrastructure.utils.JsonUtil;
 
 import lombok.Builder;
 import lombok.Data;
-
+/**
+ * @author linzihao
+ */
 @Data
 @Builder
 public class ResultData<T> implements Serializable {

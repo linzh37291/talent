@@ -5,6 +5,7 @@ import java.time.Duration;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,9 +27,11 @@ import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 import reactor.netty.tcp.TcpServer;
 import reactor.netty.udp.UdpServer;
-
+/**
+ * @author linzihao
+ */
 @Slf4j
-@SpringBootApplication
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 //@PropertySource({ "classpath:application.properties" })
 public class TalentApplication implements WebFluxConfigurer {
 

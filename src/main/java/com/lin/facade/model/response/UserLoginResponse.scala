@@ -1,4 +1,4 @@
-package com.nova.felixchat.facade.model.response
+package com.lin.facade.model.response
 
 /**
  *

@@ -1,4 +1,4 @@
-package com.nova.felixchat.domain.repository
+package com.lin.domain.repository
 
 import reactor.core.publisher.{Flux, Mono}
 

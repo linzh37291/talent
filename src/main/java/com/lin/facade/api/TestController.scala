@@ -1,16 +1,20 @@
-package com.nova.felixchat.facade.api
+package com.lin.facade.api
 
-import com.nova.felixchat.application.service.IUserService
-import com.nova.felixchat.domain.model.UserInfoDO
-import com.nova.felixchat.facade.model.factory.impl.{UserAddRequestFactory, UserResponseFactory}
-import com.nova.felixchat.facade.model.request.UserAddRequest
-import com.nova.felixchat.infrastructure.commons.ResultData
+
+import com.lin.application.service.IUserService
+import com.lin.domain.model.UserInfoDO
+import com.lin.facade.model.factory.{UserAddRequestFactory, UserResponseFactory}
+import com.lin.facade.model.request.UserAddRequest
+import com.lin.infrastructure.commons.ResultData
+
 import javax.validation.Valid
 import javax.validation.constraints.NotBlank
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation._
-
+/**
+ * @author linzihao
+ */
 @RestController
 @Validated
 class TestController {

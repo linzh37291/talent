@@ -1,6 +1,7 @@
-package com.nova.felixchat.infrastructure.persistence.mapper
+package com.lin.infrastructure.persistence.mapper
 
-import com.nova.felixchat.infrastructure.persistence.entity.UserInfoPO
+
+import com.lin.infrastructure.persistence.entity.UserInfoPO
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository
 import org.springframework.stereotype.Repository
 import reactor.core.publisher.Mono

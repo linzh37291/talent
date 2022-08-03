@@ -1,9 +1,9 @@
-package com.nova.felixchat.facade.model.request
+package com.lin.facade.model.request
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.nova.felixchat.infrastructure.persistence.entity.AddressPO
-import javax.validation.constraints.NotBlank
+import com.lin.infrastructure.persistence.entity.AddressPO
 
+import javax.validation.constraints.NotBlank
 import scala.beans.BeanProperty
 
 /**

@@ -1,6 +1,6 @@
-package com.nova.felixchat.domain.repository
+package com.lin.domain.repository
 
-import com.nova.felixchat.infrastructure.persistence.entity.UserInfoPO
+import com.lin.infrastructure.persistence.entity.UserInfoPO
 import reactor.core.publisher.Mono
 
 /**

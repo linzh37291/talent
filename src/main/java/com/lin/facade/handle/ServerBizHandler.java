@@ -5,6 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 /**
+ * @author linzihao
  * 收到来自客户端的数据包后, 直接在控制台打印出来.
  */
 @ChannelHandler.Sharable

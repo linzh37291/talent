@@ -1,10 +1,12 @@
-package com.nova.felixchat.infrastructure.persistence.entity
+package com.lin.infrastructure.persistence.entity
 
-import com.nova.felixchat.infrastructure.commons.constants.MongoConstant
+import com.lin.infrastructure.commons.constants.MongoConstant
 import org.springframework.data.mongodb.core.mapping.{DBRef, Document, Field, MongoId}
 
 import scala.beans.BeanProperty
-
+/**
+ * @author linzihao
+ */
 @Document(MongoConstant.FRIENDS)
 class FriendPO {
 

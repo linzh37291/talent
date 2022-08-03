@@ -1,9 +1,12 @@
-package com.nova.felixchat.application.service
+package com.lin.application.service
 
-import com.nova.felixchat.domain.model.UserInfoDO
+
+import com.lin.domain.model.UserInfoDO
 import reactor.core.publisher.Mono
 
-
+/**
+ * @author linzihao
+ */
 trait IUserService {
   def login(userInfo: UserInfoDO): Mono[UserInfoDO]
 

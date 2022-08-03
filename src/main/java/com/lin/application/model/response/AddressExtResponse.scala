@@ -1,7 +1,9 @@
-package com.nova.felixchat.application.model.response
+package com.lin.application.model.response
 
 /**
  *
  * @author linzihao
+ *
+ * @param [T]
  */
 class AddressExtResponse[T]

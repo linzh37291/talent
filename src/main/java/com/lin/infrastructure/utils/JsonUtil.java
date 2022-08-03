@@ -16,7 +16,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * @author linzihao
+ */
 @Slf4j
 public class JsonUtil {
 

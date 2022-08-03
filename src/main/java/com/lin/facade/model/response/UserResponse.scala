@@ -1,11 +1,13 @@
-package com.nova.felixchat.facade.model.response
+package com.lin.facade.model.response
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.nova.felixchat.infrastructure.persistence.entity.AddressPO
+import com.lin.infrastructure.persistence.entity.AddressPO
 
 import scala.beans.BeanProperty
 
-
+/**
+ * @author linzihao
+ */
 class UserResponse extends BaseResponse with Serializable {
 
   private val serialVersionUID: Long = 1L

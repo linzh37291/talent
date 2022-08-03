@@ -1,7 +1,11 @@
-package com.nova.felixchat.domain.assembler
+package com.lin.domain.assembler
 
-import com.nova.felixchat.domain.model.BaseDO
+import com.lin.domain.model.BaseDO
 
+
+/**
+ * @author linzihao
+ */
 trait IAssembler[DO <: BaseDO, PO] {
 
   def toDO(persistentObj: PO): DO

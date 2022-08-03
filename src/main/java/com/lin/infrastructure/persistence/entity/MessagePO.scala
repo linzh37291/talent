@@ -1,13 +1,14 @@
-package com.nova.felixchat.infrastructure.persistence.entity
+package com.lin.infrastructure.persistence.entity
 
 import java.time.LocalDateTime
-
 import com.fasterxml.jackson.annotation.JsonFormat
-import com.nova.felixchat.infrastructure.commons.constants.MongoConstant
+import com.lin.infrastructure.commons.constants.MongoConstant
 import org.springframework.data.mongodb.core.mapping.{Document, Field, MongoId}
 
 import scala.beans.BeanProperty
-
+/**
+ * @author linzihao
+ */
 @Document(MongoConstant.MESSAGE)
 class MessagePO {
   /**

@@ -1,5 +1,7 @@
-package com.nova.felixchat.infrastructure.commons.constants
-
+package com.lin.infrastructure.commons.constants
+/**
+ * @author linzihao
+ */
 object MongoConstant {
 
   final val FRIENDS = "friends"

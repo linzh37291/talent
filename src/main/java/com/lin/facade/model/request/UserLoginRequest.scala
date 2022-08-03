@@ -1,4 +1,4 @@
-package com.nova.felixchat.facade.model.request
+package com.lin.facade.model.request
 
 /**
  *

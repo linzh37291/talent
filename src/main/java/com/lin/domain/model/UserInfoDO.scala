@@ -1,16 +1,18 @@
-package com.nova.felixchat.domain.model
+package com.lin.domain.model
+
+import com.lin.domain.assembler.UserAssembler
+import com.lin.domain.repository.UserRepository
+import com.lin.infrastructure.persistence.entity.{FriendGroupPO, FriendPO}
+import com.lin.infrastructure.utils.SpringUtils
 
 import java.time.LocalDate
-
-import com.nova.felixchat.domain.assembler.impl.UserAssembler
-import com.nova.felixchat.domain.repository.impl.UserRepository
-import com.nova.felixchat.infrastructure.persistence.entity._
-import com.nova.felixchat.infrastructure.utils.SpringUtils
 import reactor.core.publisher.Mono
 
 import scala.beans.BeanProperty
 
-
+/**
+ * @author linzihao
+ */
 class UserInfoDO extends BaseDO {
 
   @BeanProperty var id: Long = _

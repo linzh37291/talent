@@ -1,7 +1,6 @@
-package com.nova.felixchat.application.model.request
+package com.lin.application.model.request
 
 /**
- *
  * @author linzihao
  */
 class AddressExtRequest {
