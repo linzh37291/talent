@@ -6,6 +6,8 @@ import com.lin.infrastructure.persistence.entity.AddressPO
 import scala.beans.BeanProperty
 
 /**
+ *
+ * Scala的@BeanProperty可以取代Lombok
  * @author linzihao
  */
 class UserResponse extends BaseResponse with Serializable {

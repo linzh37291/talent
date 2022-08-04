@@ -6,8 +6,10 @@ import com.lin.infrastructure.utils.BeanUtils
 import org.springframework.stereotype.Component
 
 /**
+ *
+ * Scala的@BeanProperty可以取代Lombok
  * @author linzihao
- **/
+ */
 @Component
 class UserAddRequestFactory extends IRequestFactory[UserAddRequest, UserInfoDO] {
 

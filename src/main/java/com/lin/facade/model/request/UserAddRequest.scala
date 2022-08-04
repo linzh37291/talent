@@ -8,9 +8,8 @@ import scala.beans.BeanProperty
 
 /**
  * 新增用户请求参数
- *
+ * Scala的@BeanProperty可以取代Lombok
  * @author linzihao
- *
  */
 class UserAddRequest extends BaseRequest {
 

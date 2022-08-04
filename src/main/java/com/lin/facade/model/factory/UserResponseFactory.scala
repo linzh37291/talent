@@ -5,6 +5,8 @@ import com.lin.facade.model.response.UserResponse
 import com.lin.infrastructure.utils.BeanUtils
 import org.springframework.stereotype.Component
 /**
+ *
+ * Scala的@BeanProperty可以取代Lombok
  * @author linzihao
  */
 @Component

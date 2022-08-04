@@ -10,7 +10,12 @@ import reactor.core.publisher.Mono
 
 import scala.beans.BeanProperty
 
+
+
+
 /**
+ *
+ * Scala的@BeanProperty可以取代Lombok
  * @author linzihao
  */
 class UserInfoDO extends BaseDO {

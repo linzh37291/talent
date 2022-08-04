@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository
 import reactor.core.publisher.{Flux, Mono}
 /**
  *
+ * Scala的BeanProperty可以取代Lombok
  * @author linzihao
  */
 @Repository

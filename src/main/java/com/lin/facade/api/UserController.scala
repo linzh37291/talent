@@ -5,6 +5,7 @@ import com.lin.domain.model.UserInfoDO
 import com.lin.facade.model.factory.{UserAddRequestFactory, UserResponseFactory}
 import com.lin.facade.model.request.UserLoginRequest
 import com.lin.infrastructure.utils.{BeanUtils, JsonUtil}
+import lombok.extern.slf4j.Slf4j
 
 import javax.validation.Valid
 import org.slf4j.LoggerFactory
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation._
 
 
 /**
+ *
+ * Scala的@BeanProperty可以取代Lombok
  * @author linzihao
  */
 @RestController

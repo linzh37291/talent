@@ -7,6 +7,8 @@ import org.springframework.data.mongodb.core.mapping.{Document, Field, MongoId}
 
 import scala.beans.BeanProperty
 /**
+ *
+ * Scala的注解BeanProperty可以取代Lombok
  * @author linzihao
  */
 @Document(MongoConstant.MESSAGE)
