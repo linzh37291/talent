@@ -1,7 +1,15 @@
 package com.lin;
 
-import java.time.Duration;
-
+import com.lin.facade.handle.ServerBizHandler;
+import com.lin.facade.handle.ServerIdleStateTrigger;
+import com.lin.facade.handle.TcpDecoderHandler;
+import com.lin.facade.handle.UdpDecoderHandler;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.codec.LengthFieldPrepender;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
+import io.netty.handler.timeout.IdleStateHandler;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,27 +20,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.config.PathMatchConfigurer;
 import org.springframework.web.reactive.config.ResourceHandlerRegistry;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
-
-import com.lin.facade.handle.ServerBizHandler;
-import com.lin.facade.handle.ServerIdleStateTrigger;
-import com.lin.facade.handle.TcpDecoderHandler;
-import com.lin.facade.handle.UdpDecoderHandler;
-
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
-import io.netty.handler.codec.LengthFieldPrepender;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
-import io.netty.handler.timeout.IdleStateHandler;
-import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 import reactor.netty.tcp.TcpServer;
 import reactor.netty.udp.UdpServer;
+
+import java.time.Duration;
 /**
  * @author linzihao
  */
 @Slf4j
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-//@PropertySource({ "classpath:application.properties" })
 public class TalentApplication implements WebFluxConfigurer {
 
 	/**
@@ -56,8 +53,9 @@ public class TalentApplication implements WebFluxConfigurer {
 		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
 	}
 
+
 	/**
-	 * 在项目启动后执行
+	 * 在项目启动后执行。自动执行一次
 	 *
 	 * @param udpDecoderHandler
 	 * @param tcpDecoderHandler
@@ -65,7 +63,9 @@ public class TalentApplication implements WebFluxConfigurer {
 	 */
 	@Bean
 	CommandLineRunner serverRunner(UdpDecoderHandler udpDecoderHandler, TcpDecoderHandler tcpDecoderHandler) {
-		return strings -> {
+
+		return data -> {
+			System.out.println("CommandLineRunner 初始化成功！！！");
 			createUdpServer(udpDecoderHandler);
 			createTcpServer(tcpDecoderHandler);
 		};
@@ -91,17 +91,29 @@ public class TalentApplication implements WebFluxConfigurer {
 	 * @param tcpDecoderHandler： 解析TCP Client上报数据的handler
 	 */
 	private void createTcpServer(TcpDecoderHandler tcpDecoderHandler) {
+		System.out.println("开始初始化TCPServer");
 		TcpServer.create().handle((in, out) -> {
 			in.receive().asByteArray().subscribe();
 			return Flux.never();
 		}).doOnConnection(conn -> {
+			System.out.println("开始设置处理器TCPServer");
+			// 实例只写了如何添加handler,可添加delimiter，tcp生命周期，decoder，encoder等handler
 			conn.addHandlerLast(new IdleStateHandler(5, 0, 0)).addHandlerLast(new ServerIdleStateTrigger())
 					.addHandlerLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4))
 					.addHandlerLast(new LengthFieldPrepender(4)).addHandlerLast(new StringDecoder())
-					.addHandlerLast(new StringEncoder()).addHandlerLast(new ServerBizHandler());
-		}) // 实例只写了如何添加handler,可添加delimiter，tcp生命周期，decoder，encoder等handler
-				.port(9967).bindNow();
+					.addHandlerLast(new StringEncoder()).addHandlerLast(new ServerBizHandler())
+					.addHandlerLast(tcpDecoderHandler);
+			System.out.println("成功设置处理器TCPServer");
+		}).port(9997).bindNow(Duration.ofSeconds(30));
+		//.port(9967).bindNow(Duration.ofSeconds(30));
+		System.out.println("成功初始化TCPServer！！！");
 	}
+
+//	@Bean("httpClient")
+//	public RestTemplate httpClientRestTemplate(){
+//		RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
+//		return restTemplate;
+//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(TalentApplication.class, args);

@@ -16,6 +16,7 @@ import java.util.List;
 public class TcpDecoderHandler extends MessageToMessageDecoder {
 	@Override
 	protected void decode(ChannelHandlerContext channelHandlerContext, Object o, List list) {
+		System.out.println("接收到的消息:" + o.toString());
 		log.info("解析client上报数据");
 	}
 }

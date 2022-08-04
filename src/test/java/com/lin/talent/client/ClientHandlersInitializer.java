@@ -12,13 +12,13 @@ import org.springframework.util.Assert;
 
 public class ClientHandlersInitializer extends ChannelInitializer<SocketChannel> {
 
-//    private ReconnectHandler reconnectHandler;
-//    private EchoHandler echoHandler;
+	//private ReconnectHandler reconnectHandler;
+	//private EchoHandler echoHandler;
 
 	public ClientHandlersInitializer(TcpReactiveClient tcpClient) {
 		Assert.notNull(tcpClient, "TcpClient can not be null.");
-//        this.reconnectHandler = new ReconnectHandler(tcpClient);
-//        this.echoHandler = new EchoHandler();
+		//this.reconnectHandler = new ReconnectHandler(tcpClient);
+		// this.echoHandler = new EchoHandler();
 	}
 
 	@Override
