@@ -10,9 +10,13 @@ import reactor.core.publisher.Mono
 @Service
 class UserServiceImpl extends IUserService {
 
-  override def addUserInfo(userInfoDomain: UserInfoDO): Mono[UserInfoDO] = {
-    userInfoDomain.save
+  override def addUserInfo(userInfoDO: UserInfoDO): Mono[UserInfoDO] = {
+    userInfoDO.save
   }
 
-  override def login(userInfo: UserInfoDO): Mono[UserInfoDO] = ???
+  override def login(userInfoDO: UserInfoDO): Mono[UserInfoDO] = ???
+
+  override def register(userInfoDO: UserInfoDO): Mono[UserInfoDO] = {
+    userInfoDO.save
+  }
 }

@@ -1,14 +1,9 @@
 package com.lin.facade.handle;
 
-import java.io.IOException;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-
+import com.lin.infrastructure.commons.BusinessException;
+import com.lin.infrastructure.commons.ResultData;
+import com.lin.infrastructure.commons.enums.BizErrorCode;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -17,13 +12,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.bind.support.WebExchangeBindException;
 import org.springframework.web.context.request.async.AsyncRequestTimeoutException;
-
-import com.lin.infrastructure.commons.BusinessException;
-import com.lin.infrastructure.commons.ResultData;
-import com.lin.infrastructure.commons.enums.BizErrorCode;
-
-import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import java.io.IOException;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * 统一异常处理类
@@ -45,7 +42,7 @@ public class GlobalExceptionHandler {
 		log.info(e.getMessage());
 		BindingResult bindingResult = e.getBindingResult();
 		List<ObjectError> errorList = bindingResult.getAllErrors();
-		String message = errorList.stream().map(p -> FieldError.class.cast(p).getDefaultMessage())
+		String message = errorList.stream().map(p -> ((FieldError) p).getDefaultMessage())
 				.collect(Collectors.joining(","));
 		log.warn("======参数校验异常======" + message);
 		ResultData resultData = ResultData.builder().code(BizErrorCode.REQUEST_PARAM_ILLEGAL.getCode()).msg(message)
@@ -82,7 +79,7 @@ public class GlobalExceptionHandler {
 		String msg = bindingResult.getFieldErrors().stream().sorted(Comparator.comparing(FieldError::getField))
 				.map(e1 -> e1.getDefaultMessage()).collect(Collectors.joining(","));
 		log.error("参数验证失败: {},", e.getMessage());
-		ResultData<Object> resultData = ResultData.builder().code(BizErrorCode.REQUEST_PARAM_INVALID.getCode()).msg(msg)
+		ResultData resultData = ResultData.builder().code(BizErrorCode.REQUEST_PARAM_INVALID.getCode()).msg(msg)
 				.build();
 		return Mono.just(resultData);
 	}

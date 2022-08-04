@@ -3,20 +3,23 @@ package com.lin.facade.api
 import com.lin.application.service.IUserService
 import com.lin.domain.model.UserInfoDO
 import com.lin.facade.model.factory.{UserAddRequestFactory, UserResponseFactory}
-import com.lin.facade.model.request.UserLoginRequest
+import com.lin.facade.model.request.{UserLoginRequest, UserRegisterRequest}
+import com.lin.facade.model.response.UserRegisterResponse
+import com.lin.infrastructure.commons.ResultData
 import com.lin.infrastructure.utils.{BeanUtils, JsonUtil}
-import lombok.extern.slf4j.Slf4j
-
-import javax.validation.Valid
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation._
+import reactor.core.publisher.Mono
+
+import javax.validation.Valid
 
 
 /**
  *
  * Scala的@BeanProperty可以取代Lombok
+ *
  * @author linzihao
  */
 @RestController
@@ -34,11 +37,12 @@ class UserController {
   /**
    * （1）登录接口
    */
-  @PostMapping(Array("/login")) def login(@RequestBody @Valid userLoginRequest: UserLoginRequest) = {
+  @PostMapping(Array("/login")) def login(@RequestBody @Valid userLoginRequest: UserLoginRequest): Mono[ResultData] = {
     logger.info("登录信息输入参数：[{}]", JsonUtil.toJson(userLoginRequest))
     val userInfo = new UserInfoDO
     BeanUtils.copyProperties(userLoginRequest, userInfo)
-    //userService.login(userInfo).map(ResultData.getSuccessData(_)).onErrorReturn(ResultData.getFailResult(_))
+    userService.login(userInfo).map(ResultData.getSuccessData)
+
   }
 
   //  /**
@@ -57,29 +61,27 @@ class UserController {
   //    return resultData
   //  }
   //
-//    /**
-//     * （3）注册接口
-//     */
-//    @PostMapping(Array("/register")) def register(@RequestBody @Valid userRegisterRequest: UserRegisterRequest): ResultData[_] = {
-//      val resultData: ResultData[_] = new ResultData[_]
-//      val userInfoDO = new UserInfoDO
-//      BeanUtils.copyProperties(userRegisterRequest, userInfoDO)
-//      //调用用户注册接口
-//      val userRegisterRes: UserRegisterRequest = userService.register(userInfoDO)
-//      if (userRegisterRes != null) {
-//        val userRegisterResponse: UserRegisterResponse = new UserRegisterResponse
-//        userRegisterResponse.setUser_id(userRegisterRes.getUserId)
-//        userRegisterResponse.setStatus(userRegisterRes.getState)
-//        resultData.setCode("0000")
-//        resultData.setMsg("注册成功")
-//        resultData.setData(userRegisterRes)
-//      }
-//      else {
-//        resultData.setCode("1000")
-//        resultData.setMsg("注册失败")
-//      }
-//      return resultData
-//    }
+
+  /**
+   * （3）注册接口
+   */
+  @PostMapping(Array("/register")) def register(@RequestBody @Valid userRegisterRequest: UserRegisterRequest): Mono[_] = {
+    val userInfoDO = new UserInfoDO
+    BeanUtils.copyProperties(userRegisterRequest, userInfoDO)
+    //调用用户注册接口
+    userService.register(userInfoDO).map(user => {
+      if (user != null) {
+        val userRegisterResponse: UserRegisterResponse = new UserRegisterResponse
+        userRegisterResponse.setId(user.getId)
+        userRegisterResponse.setUserState(user.getUserState)
+        ResultData.getSuccessResult(userRegisterResponse, "注册成功")
+      } else {
+        ResultData.getFailResult("注册失败")
+      }
+
+    })
+
+  }
 
 
 }

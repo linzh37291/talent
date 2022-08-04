@@ -8,7 +8,9 @@ import reactor.core.publisher.Mono
  * @author linzihao
  */
 trait IUserService {
-  def login(userInfo: UserInfoDO): Mono[UserInfoDO]
+  def login(userInfoDO: UserInfoDO): Mono[UserInfoDO]
 
-  def addUserInfo(userInfoDomain: UserInfoDO): Mono[UserInfoDO]
+  def addUserInfo(userInfoDO: UserInfoDO): Mono[UserInfoDO]
+
+  def register(userInfoDO: UserInfoDO): Mono[UserInfoDO]
 }

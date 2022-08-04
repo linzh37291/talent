@@ -1,18 +1,18 @@
 package com.lin.infrastructure.commons;
 
-import java.io.Serializable;
-
 import com.lin.infrastructure.commons.enums.BizErrorCode;
 import com.lin.infrastructure.utils.JsonUtil;
-
 import lombok.Builder;
 import lombok.Data;
+
+import java.io.Serializable;
+
 /**
  * @author linzihao
  */
 @Data
 @Builder
-public class ResultData<T> implements Serializable {
+public class ResultData implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -34,9 +34,10 @@ public class ResultData<T> implements Serializable {
 	private String code = ERR;
 	@Builder.Default
 	private String msg = "";
-	private T data;
+	private Object data;
 
 	public static ResultData getFailResult() {
+
 		return new ResultData(ERR, ERR_MSG);
 	}
 
@@ -45,15 +46,7 @@ public class ResultData<T> implements Serializable {
 		return new ResultData(ERR, message);
 	}
 
-	public static ResultData getSuccessResult(String message) {
-		return new ResultData(OK, message);
-	}
-
-	public static ResultData getSuccessResult() {
-		return ResultData.SUCESS;
-	}
-
-	public ResultData(T result) {
+	public ResultData(Object result) {
 		this(OK, OK_MSG, result);
 	}
 
@@ -72,7 +65,7 @@ public class ResultData<T> implements Serializable {
 	 * @param <T>
 	 * @return
 	 */
-	public static <T> ResultData getSuccessData(T data) {
+	public static ResultData getSuccessData(Object data) {
 		return new ResultData(OK, OK_MSG, data);
 	}
 
@@ -83,8 +76,19 @@ public class ResultData<T> implements Serializable {
 	 * @param message
 	 * @return
 	 */
-	public static <T> ResultData getSuccessResult(T data, String message) {
+	public static ResultData getSuccessResult(Object data, String message) {
+
 		return new ResultData(OK, message, data);
+	}
+
+	public static ResultData getSuccessResult(String message) {
+
+		return new ResultData(OK, message);
+	}
+
+	public static ResultData getSuccessResult() {
+
+		return ResultData.SUCESS;
 	}
 
 	public ResultData() {
@@ -95,23 +99,23 @@ public class ResultData<T> implements Serializable {
 		this.msg = message;
 	}
 
-	public ResultData(String code, String message, T result) {
+	public ResultData(String code, String message, Object result) {
 		this.code = code;
 		this.msg = message;
 		this.data = result;
 	}
 
-	public T getData() {
+	public Object getData() {
 		return data;
 	}
 
-	public ResultData setData(T data) {
+	public ResultData setData(Object data) {
 		this.data = data;
 		return this;
 	}
 
 	public static void main(String[] args) {
-		ResultData<Object> data = ResultData.builder().build();
+		ResultData data = ResultData.builder().build();
 		System.err.println(JsonUtil.toJson(data));
 	}
 }

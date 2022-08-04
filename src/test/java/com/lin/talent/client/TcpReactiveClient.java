@@ -9,9 +9,6 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import org.springframework.boot.SpringApplication;
 
-import java.util.UUID;
-import java.util.stream.IntStream;
-
 public class TcpReactiveClient {
 
     private final String serverHost;
@@ -45,19 +42,9 @@ public class TcpReactiveClient {
                 .handler(new ClientHandlersInitializer(TcpReactiveClient.this));
     }
 
+
     public static void main(String[] args) {
         SpringApplication.run(TalentApplication.class, args);
-        TcpReactiveClient tcpClient = new TcpReactiveClient("localhost", 9997);
-        tcpClient.connect();
-        IntStream.range(1, 10000000).forEach(i -> {
-            tcpClient.send(UUID.randomUUID().toString());
-            System.out.println("tcpClient.send");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
 
     }
 

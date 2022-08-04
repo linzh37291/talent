@@ -6,18 +6,21 @@ import com.lin.domain.model.UserInfoDO
 import com.lin.facade.model.factory.{UserAddRequestFactory, UserResponseFactory}
 import com.lin.facade.model.request.UserAddRequest
 import com.lin.infrastructure.commons.ResultData
-
-import javax.validation.Valid
-import javax.validation.constraints.NotBlank
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation._
+
+import javax.validation.Valid
+import javax.validation.constraints.NotBlank
+
 /**
  * @author linzihao
  */
 @RestController
 @Validated
 class TestController {
+  val logger = LoggerFactory.getLogger(this.getClass)
 
   @Autowired var userServiceImpl: IUserService = _
 
@@ -35,6 +38,7 @@ class TestController {
 
   @GetMapping(Array("/test/user/put/{account}"))
   def putName(@PathVariable("account") account: String) = {
+    //print("成功請求！！！")
     var info = new UserInfoDO
     info.account = account
     userServiceImpl.addUserInfo(info)
@@ -46,6 +50,7 @@ class TestController {
 
   @GetMapping(Array("/test/user/add"))
   def add(@NotBlank(message = "账号不能为空") account: String) = {
+    //print("成功請求！！！")
     var info = new UserInfoDO
     info.account = account
     userServiceImpl.addUserInfo(info)

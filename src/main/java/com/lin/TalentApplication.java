@@ -25,12 +25,14 @@ import reactor.netty.tcp.TcpServer;
 import reactor.netty.udp.UdpServer;
 
 import java.time.Duration;
+
 /**
  * @author linzihao
  */
 @Slf4j
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class TalentApplication implements WebFluxConfigurer {
+
 
 	/**
 	 * 相当于server.servlet.context-path
@@ -109,11 +111,6 @@ public class TalentApplication implements WebFluxConfigurer {
 		System.out.println("成功初始化TCPServer！！！");
 	}
 
-//	@Bean("httpClient")
-//	public RestTemplate httpClientRestTemplate(){
-//		RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
-//		return restTemplate;
-//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(TalentApplication.class, args);

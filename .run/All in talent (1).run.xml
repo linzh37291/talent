@@ -1,0 +1,39 @@
+<component name="ProjectRunConfigurationManager">
+    <configuration default="false" name="--add-opens java.base/java.lang=spring.core  in talent" type="JUnit"
+                   factoryName="JUnit" nameIsGenerated="true">
+        <module name="talent"/>
+        <option name="PACKAGE_NAME" value="--add-opens java.base/java.lang=spring.core "/>
+        <option name="MAIN_CLASS_NAME" value=""/>
+        <option name="METHOD_NAME" value=""/>
+        <option name="TEST_OBJECT" value="package"/>
+        <method v="2">
+            <option name="Make" enabled="true"/>
+        </method>
+    </configuration>
+    <configuration default="false" name="All in talent" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+        <module name="talent"/>
+        <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true"/>
+        <option name="ALTERNATIVE_JRE_PATH" value="17"/>
+        <option name="PACKAGE_NAME" value=""/>
+        <option name="MAIN_CLASS_NAME" value=""/>
+        <option name="METHOD_NAME" value=""/>
+        <option name="TEST_OBJECT" value="package"/>
+        <option name="VM_PARAMETERS" value="--add-opens java.base/java.lang=spring.core"/>
+        <method v="2">
+            <option name="Make" enabled="true"/>
+        </method>
+    </configuration>
+    <configuration default="false" name="All in talent" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+        <module name="talent"/>
+        <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true"/>
+        <option name="ALTERNATIVE_JRE_PATH" value="17"/>
+        <option name="PACKAGE_NAME" value=""/>
+        <option name="MAIN_CLASS_NAME" value=""/>
+        <option name="METHOD_NAME" value=""/>
+        <option name="TEST_OBJECT" value="package"/>
+        <option name="VM_PARAMETERS" value="--add-opens java.base/java.lang.reflect=ALL-UNNAMED"/>
+        <method v="2">
+            <option name="Make" enabled="true"/>
+        </method>
+    </configuration>
+</component>
