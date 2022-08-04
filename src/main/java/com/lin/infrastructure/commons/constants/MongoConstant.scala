@@ -1,5 +1,7 @@
 package com.lin.infrastructure.commons.constants
 /**
+ *
+ * Scala的注解BeanProperty可以取代Lombok
  * @author linzihao
  */
 object MongoConstant {
