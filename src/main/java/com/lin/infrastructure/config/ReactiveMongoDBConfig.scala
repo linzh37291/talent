@@ -25,8 +25,6 @@ class ReactiveMongoDBConfig {
   val mongodbDatabase: String = getProperty("spring.data.mongodb.database");
   val mongodbUsername: String = getProperty("spring.data.mongodb.username");
   val mongodbPassword: String = getProperty("spring.data.mongodb.password");
-
-
   def getProperty(name: String): String = {
     val properties = new Properties()
     val path = Thread
@@ -42,7 +40,6 @@ class ReactiveMongoDBConfig {
     }
     propVal
   }
-
 
   {
     //mongodb://talent:*****@localhost:27017/?authSource=talent&readPreference=primary&appname=MongoDB%20Compass%20Isolated%20Edition&ssl=false
