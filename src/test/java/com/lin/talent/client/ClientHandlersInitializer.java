@@ -12,22 +12,22 @@ import org.springframework.util.Assert;
 
 public class ClientHandlersInitializer extends ChannelInitializer<SocketChannel> {
 
-	//private ReconnectHandler reconnectHandler;
-	//private EchoHandler echoHandler;
+    //private ReconnectHandler reconnectHandler;
+    //private EchoHandler echoHandler;
 
-	public ClientHandlersInitializer(TcpReactiveClient tcpClient) {
-		Assert.notNull(tcpClient, "TcpClient can not be null.");
-		//this.reconnectHandler = new ReconnectHandler(tcpClient);
-		// this.echoHandler = new EchoHandler();
-	}
+    public ClientHandlersInitializer(TcpReactiveClient tcpClient) {
+        Assert.notNull(tcpClient, "TcpClient can not be null.");
+        //this.reconnectHandler = new ReconnectHandler(tcpClient);
+        // this.echoHandler = new EchoHandler();
+    }
 
-	@Override
-	protected void initChannel(SocketChannel ch) throws Exception {
-		ChannelPipeline pipeline = ch.pipeline();
-		pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));
-		pipeline.addLast(new LengthFieldPrepender(4));
-		pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
-		pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
-		pipeline.addLast(new Pinger());
-	}
+    @Override
+    protected void initChannel(SocketChannel ch) throws Exception {
+        ChannelPipeline pipeline = ch.pipeline();
+        pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));
+        pipeline.addLast(new LengthFieldPrepender(4));
+        pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
+        pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
+        pipeline.addLast(new Pinger());
+    }
 }

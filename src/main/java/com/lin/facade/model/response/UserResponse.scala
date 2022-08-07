@@ -1,13 +1,14 @@
 package com.lin.facade.model.response
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.lin.infrastructure.persistence.entity.AddressPO
+import com.lin.infrastructure.persistence.doc.AddressDoc
 
 import scala.beans.BeanProperty
 
 /**
  *
  * Scala的@BeanProperty可以取代Lombok
+ *
  * @author linzihao
  */
 class UserResponse extends BaseResponse with Serializable {
@@ -50,13 +51,13 @@ class UserResponse extends BaseResponse with Serializable {
    */
   @BeanProperty var vocation: String = _
 
-  @BeanProperty var nation: AddressPO = _
+  @BeanProperty var nation: AddressDoc = _
 
-  @BeanProperty var province: AddressPO = _
+  @BeanProperty var province: AddressDoc = _
 
-  @BeanProperty var city: AddressPO = _
+  @BeanProperty var city: AddressDoc = _
 
-  @BeanProperty var area: AddressPO = _
+  @BeanProperty var area: AddressDoc = _
 
-  @BeanProperty var street: AddressPO = _
+  @BeanProperty var street: AddressDoc = _
 }

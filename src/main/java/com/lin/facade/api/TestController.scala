@@ -2,8 +2,8 @@ package com.lin.facade.api
 
 
 import com.lin.application.service.IUserService
-import com.lin.domain.model.UserInfoDO
-import com.lin.facade.model.factory.{UserAddRequestFactory, UserResponseFactory}
+import com.lin.business.domain.UserInfoDO
+import com.lin.facade.converter.{UserAddRequestFactory, UserResponseFactory}
 import com.lin.facade.model.request.UserAddRequest
 import com.lin.infrastructure.commons.ResultData
 import org.slf4j.LoggerFactory

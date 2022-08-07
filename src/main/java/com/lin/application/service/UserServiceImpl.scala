@@ -1,6 +1,6 @@
 package com.lin.application.service
 
-import com.lin.domain.model.UserInfoDO
+import com.lin.business.domain.UserInfoDO
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 

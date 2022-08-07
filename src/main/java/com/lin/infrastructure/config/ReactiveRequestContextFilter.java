@@ -1,5 +1,6 @@
 package com.lin.infrastructure.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.server.ServerWebExchange;
@@ -8,18 +9,22 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 
 /**
- * ReactiveRequestContextFilter
+ * 这个类主要用于获取ServerHttpRequest
+ * 链接地址:
+ * <p>
+ * mongodb://talent:talent@localhost:27017/?authSource=talent&readPreference=primary&appname=MongoDB%20Compass%20Isolated%20Edition&ssl=false
  *
- * @author L.cm
+ * @author linzihao
  */
+
+@Slf4j
 @Configuration
-//@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.REACTIVE)
 public class ReactiveRequestContextFilter implements WebFilter {
 
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
-        System.err.println("ReactiveRequestContextFilter!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        log.info("ReactiveRequestContextFilter!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         ServerHttpRequest request = exchange.getRequest();
         return chain.filter(exchange).contextWrite(ctx -> ctx.put(ReactiveRequestContextHolder.CONTEXT_KEY, request));
     }
