@@ -1,34 +1,37 @@
 package com.lin.domain.assembler
 
-
 import com.lin.domain.model.UserInfoDO
 import com.lin.infrastructure.persistence.entity.UserInfoPO
-import com.lin.infrastructure.utils.BeanUtils
+import com.lin.infrastructure.utils.BeanCopyUtil
 import org.springframework.stereotype.Component
+
 /**
  *
  * Scala的BeanProperty可以取代Lombok
+ *
  * @author linzihao
  */
 @Component
-class UserAssembler extends IAssembler[UserInfoDO, UserInfoPO] {
+class UserPOAssembler extends IAssembler[UserInfoDO, UserInfoPO] {
+
+
+  override def toDoList(entities: List[UserInfoPO]): List[UserInfoDO] = {
+    entities.map(toDO(_))
+  }
+
   override def toDO(persistentObj: UserInfoPO): UserInfoDO = {
     var userInfoDO = new UserInfoDO
-    BeanUtils.copyProperties(persistentObj, userInfoDO)
+    BeanCopyUtil.copyProperties(persistentObj, userInfoDO)
     userInfoDO
+  }
+
+  override def toPoList(domains: List[UserInfoDO]): List[UserInfoPO] = {
+    domains.map(toPO(_))
   }
 
   override def toPO(domain: UserInfoDO): UserInfoPO = {
     var persistentObj = new UserInfoPO
-    BeanUtils.copyProperties(domain, persistentObj)
+    BeanCopyUtil.copyProperties(domain, persistentObj)
     persistentObj
-  }
-
-  override def toDOs(entities: List[UserInfoPO]): List[UserInfoDO] = {
-    entities.map(toDO(_))
-  }
-
-  override def toPOs(domains: List[UserInfoDO]): List[UserInfoPO] = {
-    domains.map(toPO(_))
   }
 }

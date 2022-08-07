@@ -1,23 +1,24 @@
 package com.lin.infrastructure.persistence.entity
 
-import java.time.LocalDate
-import com.fasterxml.jackson.annotation.JsonFormat
-import com.lin.infrastructure.commons.constants.MongoConstant
-import org.springframework.data.mongodb.core.mapping.{DBRef, Document, Field, MongoId}
+
+import org.springframework.data.annotation.Id
+import org.springframework.data.relational.core.mapping.Table
 
 import scala.beans.BeanProperty
+
 /**
  *
- * Scala的注解BeanProperty可以取代Lombok
+ * 用户数据表user_info
+ *
  * @author linzihao
  */
-@Document(MongoConstant.USER)
+@Table("user_info")
 class UserInfoPO {
 
 
-  @MongoId
+  @Id
   @BeanProperty
-  var id: String = _
+  var id: Int = _
 
   @BeanProperty
   var account: String = _
@@ -34,14 +35,11 @@ class UserInfoPO {
   @BeanProperty
   var sex: Int = _
 
-  @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-  @BeanProperty
-  var birthday: LocalDate = _
 
   @BeanProperty
   var telephone: String = _
 
-  @Field("real_name")
+  //@Field("real_name")
   @BeanProperty
   var realName: String = _
 
@@ -51,7 +49,7 @@ class UserInfoPO {
   @BeanProperty
   var intro: String = _
 
-  @Field("head_img")
+  //@Field("head_img")
   @BeanProperty
   var headImg: String = _
 
@@ -66,7 +64,7 @@ class UserInfoPO {
   @BeanProperty
   var constellation: String = _
 
-  @Field("school_tag")
+  //@Field("school_tag")
   @BeanProperty
   var schoolTag: String = _
   /**
@@ -78,72 +76,41 @@ class UserInfoPO {
   @BeanProperty
   var nation: String = _
 
-  @Field("province_code")
+  //@Field("province_code")
   @BeanProperty
   var provinceCode: String = _
 
-  @Field("province_name")
+
   @BeanProperty
   var provinceName: String = _
 
-  @Field("city_code")
+
   @BeanProperty
   var cityCode: String = _
 
-  @Field("city_name")
+
   @BeanProperty
   var cityName: String = _
 
-  @Field("area_code")
+
   @BeanProperty
   var areaCode: String = _
 
-  @Field("area_name")
+
   @BeanProperty
   var areaName: String = _
 
-  @Field("street_code")
+
   @BeanProperty
   var streetCode: String = _
 
-  @Field("street_name")
+
   @BeanProperty
   var streetName: String = _
 
-  @Field("user_state")
+
   @BeanProperty
   var userState: String = _
-  /**
-   * 好友策略ID
-   */
-  @Field("friendship_policy")
-  @BeanProperty
-  var friendshipPolicy: String = _
-  /**
-   * 好友策略问题
-   */
-  @Field("friendship_policy_question")
-  @BeanProperty
-  var friendshipPolicyQuestion: String = _
-  /**
-   * 好友策略答案
-   */
-  @Field("friendship_policy_answer")
-  @BeanProperty
-  var friendshipPolicyAnswer: String = _
-  /**
-   * 好友策略密码
-   */
-  @Field("friendship_policy_password")
-  @BeanProperty
-  var friendshipPolicyPassword: String = _
 
-  @DBRef
-  @BeanProperty
-  var friends: List[FriendPO] = _
-
-  @DBRef
-  @BeanProperty
-  var friendGroups: List[FriendGroupPO] = _
 
 }

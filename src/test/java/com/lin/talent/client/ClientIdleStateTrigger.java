@@ -12,19 +12,19 @@ import io.netty.handler.timeout.IdleStateEvent;
  */
 public class ClientIdleStateTrigger extends ChannelInboundHandlerAdapter {
 
-	public static final String HEART_BEAT = "heart beat!";
+    public static final String HEART_BEAT = "heart beat!";
 
-	@Override
-	public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
-		if (evt instanceof IdleStateEvent) {
-			IdleState state = ((IdleStateEvent) evt).state();
-			if (state == IdleState.WRITER_IDLE) {
-				// write heartbeat to server
-				ctx.writeAndFlush(HEART_BEAT);
-			}
-		} else {
-			super.userEventTriggered(ctx, evt);
-		}
-	}
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+        if (evt instanceof IdleStateEvent) {
+            IdleState state = ((IdleStateEvent) evt).state();
+            if (state == IdleState.WRITER_IDLE) {
+                // write heartbeat to server
+                ctx.writeAndFlush(HEART_BEAT);
+            }
+        } else {
+            super.userEventTriggered(ctx, evt);
+        }
+    }
 
 }

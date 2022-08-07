@@ -25,6 +25,11 @@ public class TcpReactiveClient {
         init();
     }
 
+    public static void main(String[] args) {
+        SpringApplication.run(TalentApplication.class, args);
+
+    }
+
     public void connect() {
         ChannelFuture connect = bootstrap.connect(serverHost, serverPort);
         this.channel = connect.channel();
@@ -40,12 +45,6 @@ public class TcpReactiveClient {
         bootstrap = new Bootstrap();
         bootstrap.group(group).channel(NioSocketChannel.class)
                 .handler(new ClientHandlersInitializer(TcpReactiveClient.this));
-    }
-
-
-    public static void main(String[] args) {
-        SpringApplication.run(TalentApplication.class, args);
-
     }
 
 }

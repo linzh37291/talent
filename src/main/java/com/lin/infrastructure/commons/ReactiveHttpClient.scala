@@ -1,7 +1,6 @@
-package com.lin.application.service
+package com.lin.infrastructure.commons
 
 import com.lin.facade.model.request.BaseRequest
-import com.lin.infrastructure.commons.ResultData
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpMethod
 import org.springframework.stereotype.Service
@@ -14,8 +13,8 @@ import org.springframework.web.reactive.function.client.WebClient
  * @author linzihao
  */
 @Service
-class ReactiveHttpClientService {
-  val log = org.slf4j.LoggerFactory.getLogger(classOf[ReactiveHttpClientService])
+class ReactiveHttpClient {
+  val log = org.slf4j.LoggerFactory.getLogger(classOf[ReactiveHttpClient])
 
 
   // 注入 webclient
@@ -31,9 +30,7 @@ class ReactiveHttpClientService {
   }
 
   def sendPostRequest(url: String, params: BaseRequest) {
-    // 请求体
-    // val params = new mutable.HashMap[String, _];
-    // webclient发送请求
+
     webClient.method(HttpMethod.POST).uri(url).bodyValue(params)
       // 转换返回结果：这个可以自己定义，需要有空构造器的bean即可。
       .retrieve.bodyToMono(classOf[ResultData])

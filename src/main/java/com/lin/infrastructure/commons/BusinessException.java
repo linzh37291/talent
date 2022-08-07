@@ -7,31 +7,31 @@ import com.lin.infrastructure.commons.enums.BizErrorCode;
  */
 public class BusinessException extends RuntimeException {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	String code = ResultData.ERR;
+    String code = ResultData.ERR;
 
-	public BusinessException(String message) {
-		super(message);
-	}
+    public BusinessException(String message) {
+        super(message);
+    }
 
-	public BusinessException(String code, String message) {
-		super(message);
-		this.code = code;
-	}
+    public BusinessException(String code, String message) {
+        super(message);
+        this.code = code;
+    }
 
-	public BusinessException(String code, String message, Throwable t) {
-		super(message, t);
-		this.code = code;
-	}
+    public BusinessException(String code, String message, Throwable t) {
+        super(message, t);
+        this.code = code;
+    }
 
-	public BusinessException(BizErrorCode bizErrorCode) {
-		super(bizErrorCode.getMsg());
-		this.code = bizErrorCode.getCode();
-	}
+    public BusinessException(BizErrorCode bizErrorCode) {
+        super(bizErrorCode.getMsg());
+        this.code = bizErrorCode.getCode();
+    }
 
-	public String getCode() {
-		return code;
-	}
+    public String getCode() {
+        return code;
+    }
 
 }

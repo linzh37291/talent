@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 /**
  * @author linzihao
  */
@@ -14,9 +15,9 @@ import java.util.List;
 @Service
 @Slf4j
 public class TcpDecoderHandler extends MessageToMessageDecoder {
-	@Override
-	protected void decode(ChannelHandlerContext channelHandlerContext, Object o, List list) {
-		System.out.println("接收到的消息:" + o.toString());
-		log.info("解析client上报数据");
-	}
+    @Override
+    protected void decode(ChannelHandlerContext channelHandlerContext, Object o, List list) {
+        System.out.println("接收到的消息:" + o.toString());
+        log.info("解析client上报数据");
+    }
 }

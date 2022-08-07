@@ -1,21 +1,15 @@
 package com.lin.domain.model
 
-import com.lin.domain.assembler.UserAssembler
-import com.lin.domain.repository.UserRepository
-import com.lin.infrastructure.persistence.entity.{FriendGroupPO, FriendPO}
-import com.lin.infrastructure.utils.SpringUtils
+import com.lin.infrastructure.persistence.doc.{FriendDoc, FriendGroupDoc}
 
 import java.time.LocalDate
-import reactor.core.publisher.Mono
-
 import scala.beans.BeanProperty
-
-
 
 
 /**
  *
  * Scala的@BeanProperty可以取代Lombok
+ *
  * @author linzihao
  */
 class UserInfoDO extends BaseDO {
@@ -86,18 +80,9 @@ class UserInfoDO extends BaseDO {
 
   @BeanProperty var friendshipPolicyPassword: String = _
 
-  @BeanProperty var friends: List[FriendPO] = _
+  @BeanProperty var friends: List[FriendDoc] = _
 
-  @BeanProperty var friendGroups: List[FriendGroupPO] = _
-
-  var userRepository: UserRepository = SpringUtils.getBean(classOf[UserRepository])
-
-  var userAssembler: UserAssembler = SpringUtils.getBean(classOf[UserAssembler])
-
-  def save: Mono[UserInfoDO] = {
-    userRepository.save(userAssembler.toPO(this))
-      .map(userAssembler.toDO(_))
-  }
+  @BeanProperty var friendGroups: List[FriendGroupDoc] = _
 
 
 }

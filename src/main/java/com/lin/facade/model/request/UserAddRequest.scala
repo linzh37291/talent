@@ -1,7 +1,7 @@
 package com.lin.facade.model.request
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.lin.infrastructure.persistence.entity.AddressPO
+import com.lin.infrastructure.persistence.doc.AddressDoc
 
 import javax.validation.constraints.NotBlank
 import scala.beans.BeanProperty
@@ -9,6 +9,7 @@ import scala.beans.BeanProperty
 /**
  * 新增用户请求参数
  * Scala的@BeanProperty可以取代Lombok
+ *
  * @author linzihao
  */
 class UserAddRequest extends BaseRequest {
@@ -53,13 +54,13 @@ class UserAddRequest extends BaseRequest {
    */
   @BeanProperty var vocation: String = _
 
-  @BeanProperty var nation: AddressPO = _
+  @BeanProperty var nation: AddressDoc = _
 
-  @BeanProperty var province: AddressPO = _
+  @BeanProperty var province: AddressDoc = _
 
-  @BeanProperty var city: AddressPO = _
+  @BeanProperty var city: AddressDoc = _
 
-  @BeanProperty var area: AddressPO = _
+  @BeanProperty var area: AddressDoc = _
 
-  @BeanProperty var street: AddressPO = _
+  @BeanProperty var street: AddressDoc = _
 }

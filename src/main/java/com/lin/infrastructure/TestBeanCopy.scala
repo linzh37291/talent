@@ -1,7 +1,7 @@
 
 package com.lin.infrastructure
 
-import com.lin.infrastructure.utils.BeanUtils
+import com.lin.infrastructure.utils.BeanCopyUtil
 
 import scala.beans.BeanProperty
 
@@ -15,11 +15,11 @@ import scala.beans.BeanProperty
  * --add-opens java.base/java.util=ALL-UNNAMED
  * --add-opens java.base/java.nio=ALL-UNNAMED
  * --add-opens java.base/sun.nio.ch=ALL-UNNAMED
- *Scala的@BeanProperty可以取代Lombok
+ * Scala的@BeanProperty可以取代Lombok
  *
  * @author linzihao
  */
- class TestBeanCopy {
+class TestBeanCopy {
   @BeanProperty var code = ""
 }
 
@@ -31,7 +31,7 @@ object TestBeanCopy {
     var a = new TestBeanCopy
     a.code = "1"
     var b = new TestBeanCopy
-    BeanUtils.copyProperties(a, b)
+    BeanCopyUtil.copyProperties(a, b)
     print(b.code)
   }
 }

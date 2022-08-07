@@ -11,39 +11,39 @@ import io.netty.channel.SimpleChannelInboundHandler;
 @ChannelHandler.Sharable
 public class ServerBizHandler extends SimpleChannelInboundHandler<String> {
 
-	private final String REC_HEART_BEAT = "I had received the heart beat!";
+    private final String REC_HEART_BEAT = "I had received the heart beat!";
 
-	@Override
-	protected void channelRead0(ChannelHandlerContext ctx, String data) throws Exception {
-		try {
-			System.out.println("receive data: " + data);
-			ctx.writeAndFlush(REC_HEART_BEAT);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    @Override
+    protected void channelRead0(ChannelHandlerContext ctx, String data) throws Exception {
+        try {
+            System.out.println("receive data: " + data);
+            ctx.writeAndFlush(REC_HEART_BEAT);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-	@Override
-	public void channelActive(ChannelHandlerContext ctx) throws Exception {
-		System.out.println("Established connection with the remote client.");
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("Established connection with the remote client.");
 
-		// do something
+        // do something
 
-		ctx.fireChannelActive();
-	}
+        ctx.fireChannelActive();
+    }
 
-	@Override
-	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-		System.out.println("Disconnected with the remote client.");
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("Disconnected with the remote client.");
 
-		// do something
+        // do something
 
-		ctx.fireChannelInactive();
-	}
+        ctx.fireChannelInactive();
+    }
 
-	@Override
-	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-		cause.printStackTrace();
-		ctx.close();
-	}
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        cause.printStackTrace();
+        ctx.close();
+    }
 }

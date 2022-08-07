@@ -6,7 +6,7 @@ import com.lin.facade.model.factory.{UserAddRequestFactory, UserResponseFactory}
 import com.lin.facade.model.request.{UserLoginRequest, UserRegisterRequest}
 import com.lin.facade.model.response.UserRegisterResponse
 import com.lin.infrastructure.commons.ResultData
-import com.lin.infrastructure.utils.{BeanUtils, JsonUtil}
+import com.lin.infrastructure.utils.{BeanCopyUtil, JsonUtil}
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.validation.annotation.Validated
@@ -40,7 +40,7 @@ class UserController {
   @PostMapping(Array("/login")) def login(@RequestBody @Valid userLoginRequest: UserLoginRequest): Mono[ResultData] = {
     logger.info("登录信息输入参数：[{}]", JsonUtil.toJson(userLoginRequest))
     val userInfo = new UserInfoDO
-    BeanUtils.copyProperties(userLoginRequest, userInfo)
+    BeanCopyUtil.copyProperties(userLoginRequest, userInfo)
     userService.login(userInfo).map(ResultData.getSuccessData)
 
   }
@@ -67,7 +67,7 @@ class UserController {
    */
   @PostMapping(Array("/register")) def register(@RequestBody @Valid userRegisterRequest: UserRegisterRequest): Mono[_] = {
     val userInfoDO = new UserInfoDO
-    BeanUtils.copyProperties(userRegisterRequest, userInfoDO)
+    BeanCopyUtil.copyProperties(userRegisterRequest, userInfoDO)
     //调用用户注册接口
     userService.register(userInfoDO).map(user => {
       if (user != null) {

@@ -17,6 +17,8 @@ import java.net.UnknownHostException;
 import java.util.Map;
 
 /**
+ * 获取所有的请求url
+ *
  * @author linzihao
  */
 @Slf4j
