@@ -3,6 +3,7 @@ package com.lin.business.domain
 import com.lin.business.repository.UserRepository
 import com.lin.infrastructure.persistence.doc.{FriendDoc, FriendGroupDoc}
 import com.lin.infrastructure.utils.SpringUtil
+import reactor.core.publisher.Mono
 
 import java.time.LocalDate
 import scala.beans.BeanProperty
@@ -95,7 +96,7 @@ class UserInfoDO extends BaseDO {
 
   var userRepository: UserRepository = SpringUtil.getBean(classOf[UserRepository])
 
-  def save() = {
+  def save(): Mono[UserInfoDO] = {
     userRepository.save(this)
   }
 
