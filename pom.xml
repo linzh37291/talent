@@ -116,6 +116,26 @@
 			<!-- 无需指定版本是因为指定了 spring-boot-dependencies 的版本，而该版本指定了 slf4j 的版本 -->
 			<!--<version>1.7.30</version>-->
 		</dependency>
+		<!--官网上下载Scala太傻比了，还是用maven下载吧-->
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>2.13.8</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.scala-lang/scala-compiler -->
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-compiler</artifactId>
+			<version>2.13.8</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.scala-lang/scala-reflect -->
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-reflect</artifactId>
+			<version>2.13.8</version>
+		</dependency>
+
 
 
 	</dependencies>
